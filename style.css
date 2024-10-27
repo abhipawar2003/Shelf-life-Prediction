@@ -1,0 +1,36 @@
+/* styles.css */
+
+/* Custom Back Button */
+.custom-back-button {
+    font-size: 1.5em;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.custom-back-button:hover {
+    background-color: #45a049;
+}
+
+/* Dark mode background and text colors */
+.stApp {
+    background-color: #121212;
+}
+
+.stApp h1, h2, h3, h4, h5, h6, p, div, label, span, .stMarkdown {
+    color: white !important;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Sidebar styling */
+.sidebar .sidebar-content {
+    background-color: #1c1c1c;
+    color: white;
+}

@@ -33,7 +33,7 @@ def extrapolate_data(data):
     return future_months, plot_path
 
 # Predict Shelf Life using Quadratic Regression
-def predict_shelf_life(extrapolated_data):
+def predict_shelf_life(extrapolated_data,threshold):
     # Fit a quadratic regression model
     X = extrapolated_data['time_months'].values
     y = extrapolated_data['predicted_dissolution'].values
@@ -47,9 +47,9 @@ def predict_shelf_life(extrapolated_data):
     future_months['predicted_dissolution'] = quadratic_model(future_months['time_months'])
 
     # Determine when the dissolution drops below 75%
-    below_75 = future_months[future_months['predicted_dissolution'] < 75]
+    below_threshold = future_months[future_months['predicted_dissolution'] < threshold]
 
-    if not below_75.empty:
-        return below_75['time_months'].min()  # Return the first month when it drops below 75%
+    if not below_threshold.empty:
+        return below_threshold['time_months'].min()  # Return the first month when it drops below 75%
     else:
        return "Shelf life exceeds 100 months"
