@@ -15,6 +15,7 @@ def load_custom_css(file_name="style_welcome.css"):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
+
 # Custom Back Button using Streamlit and CSS styling
 def custom_back_button():
     if st.button("🔙 Back", key="back_button"):
@@ -201,33 +202,18 @@ def main():
             else:
                 st.error("Login failed. Check your username and password.")
 
-# def welcome_page():
-
-#     st.title("Welcome Page")
-#     st.write(f"Welcome, {st.session_state['username']}!")
-
-#     if st.button("Extrapolate Data"):
-#         st.session_state['action'] = 'extrapolate'
-#         st.rerun()
-
-#     if st.button("Predict Shelf Life"):
-#         st.session_state['action'] = 'predict'
-#         st.rerun()
-
-#     if st.button("Logout"):
-#         st.session_state.clear()  # Clear session state
-#         st.rerun()
 
 def welcome_page():
-    # Load custom CSS
+
     load_custom_css()
 
-    # Banner
-    st.markdown('<div class="welcome-banner">Welcome to the Stability Study Analysis Platform!</div>', unsafe_allow_html=True)
-
-    # Centered content and buttons
-    st.markdown('<div class="center-content">', unsafe_allow_html=True)
+    # Wrap the Welcome Page in a div with class 'welcome-page'
+    st.markdown('<div class="welcome-page">', unsafe_allow_html=True)
     
+    # Welcome banner and content
+    st.markdown('<div class="welcome-banner">Welcome to the Stability Study Analysis Platform!</div>', unsafe_allow_html=True)
+    
+    st.markdown('<div class="center-content">', unsafe_allow_html=True)
     st.write("This platform allows you to analyze stability study data, predict shelf life, and generate professional reports with ease.")
     st.write("Choose an action below to get started.")
 
