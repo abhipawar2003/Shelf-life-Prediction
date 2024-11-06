@@ -26,8 +26,9 @@ import bcrypt
 import ssl
 
 # Connection URI
-MONGO_URI = "mongodb+srv://Abhishek:abhi123@drugdatacluster0.ko5uq.mongodb.net/Shelf_life_users?retryWrites=true&w=majority"
-
+# MONGO_URI = "mongodb+srv://Abhishek:abhi123@drugdatacluster0.ko5uq.mongodb.net/Shelf_life_users?retryWrites=true&w=majority"
+# Load MongoDB URI from Streamlit Secrets
+MONGO_URI = st.secrets["MONGO"]["URI"]
 # Set up MongoDB connection
 client = MongoClient(MONGO_URI, tls=True, tlsAllowInvalidCertificates=True)
 db = client["Shelf_life_users"]
