@@ -6,7 +6,7 @@ actual_dissolution = [100.81, 98.73, 98.73, 97.65, 93.33]
 
 # Calculate MSE
 mse = mean_squared_error(actual_dissolution, extrapolated_dissolution)
-print(f"Mean Squared Error (MSE): {mse}")
+print(f"Mean Squared Error (MSE): {mse:.2f}%")
 
 # Define a threshold for accuracy (for example, within 0.5 for being considered 'correct')
 threshold = 2.221
