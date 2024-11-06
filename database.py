@@ -24,7 +24,7 @@
 from pymongo import MongoClient
 import bcrypt
 import ssl
-
+import streamlit as st
 # Connection URI
 # MONGO_URI = "mongodb+srv://Abhishek:abhi123@drugdatacluster0.ko5uq.mongodb.net/Shelf_life_users?retryWrites=true&w=majority"
 # Load MongoDB URI from Streamlit Secrets
