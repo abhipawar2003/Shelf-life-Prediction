@@ -179,16 +179,17 @@ def main():
     choice = st.sidebar.selectbox("Select Action", menu)
 
     if choice == "Register":
-        st.subheader("Register")
-        name = st.text_input("Name")
-        username = st.text_input("Username")
-        password = st.text_input("Password", type='password')
+    st.subheader("Register")
+    name = st.text_input("Name")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type='password')
 
-        if st.button("Register"):
-            if register(name, username, password):
-                st.success("Registered successfully!")
-            else:
-                st.error("Username already exists.")
+    if st.button("Register"):
+        result = register(name, username, password)
+        if result == "Username already exists.":
+            st.error(result)  # Display error message on Streamlit
+        else:
+            st.success(result)
 
     elif choice == "Login":
         st.subheader("Login")
