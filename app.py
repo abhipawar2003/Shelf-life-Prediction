@@ -20,7 +20,7 @@ def load_custom_css(file_name="style_welcome.css"):
 def custom_back_button():
     if st.button("🔙 Back", key="back_button"):
         st.session_state['action'] = None
-        st.experimental_rerun()
+        st.rerun()
 
 
 def create_pdf_report(data, extrapolated_data, plot_path, study_type):
@@ -220,15 +220,15 @@ def welcome_page():
     # Styled buttons
     if st.button("📊 Extrapolate Data"):
         st.session_state['action'] = 'extrapolate'
-        st.experimental_rerun()
+        st.rerun()
 
     if st.button("📅 Predict Shelf Life"):
         st.session_state['action'] = 'predict'
-        st.experimental_rerun()
+        st.rerun()
 
     if st.button("🔐 Logout"):
         st.session_state.clear()
-        st.experimental_rerun()
+        st.rerun()
 
     # End centered content
     st.markdown('</div>', unsafe_allow_html=True)
