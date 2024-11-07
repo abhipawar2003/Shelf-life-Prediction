@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from fpdf import FPDF
 from io import BytesIO
 import base64
+import streamlit.components.v1 as components
 
 def load_css(file_name="styles.css"):
     with open(file_name) as f:
@@ -360,10 +361,19 @@ def predict_page():
                             base64_pdf = base64.b64encode(pdf_buffer.getvalue()).decode('utf-8')
 
                             # display pdf
+                            # st.markdown("#### Report Preview:")
+                            # st.markdown(
+                            #     f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="500" type="application/pdf"></iframe>',
+                            #     unsafe_allow_html=True,
+                            # )
                             st.markdown("#### Report Preview:")
-                            st.markdown(
-                                f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="500" type="application/pdf"></iframe>',
-                                unsafe_allow_html=True,
+
+                            # Use Streamlit's HTML component to embed the PDF
+                            components.html(
+                            f"""
+                                <iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="500" style="border: none;"></iframe>
+                                """,
+                                height=500,
                             )
                             st.download_button(
                                 label="Download Shelf Life Report as PDF",
