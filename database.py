@@ -52,11 +52,10 @@ except Exception as e:
     print("Failed to connect to MongoDB:", e)
     raise
 
-# Register function
+
 def register(name, username, password):
     if users_collection.find_one({"username": username}):
-        raise ValueError("Username already exists.")
-    
+        return "Username already exists."  # Return an error message
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     new_user = {
         "name": name,
@@ -64,7 +63,7 @@ def register(name, username, password):
         "password": hashed_password.decode('utf-8')
     }
     result = users_collection.insert_one(new_user)
-    return result.inserted_id
+    return "Registered successfully!" 
 
 # Login function
 def login(username, password):
