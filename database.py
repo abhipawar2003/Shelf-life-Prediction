@@ -28,11 +28,29 @@ import streamlit as st
 # Connection URI
 # MONGO_URI = "mongodb+srv://Abhishek:abhi123@drugdatacluster0.ko5uq.mongodb.net/Shelf_life_users?retryWrites=true&w=majority"
 # Load MongoDB URI from Streamlit Secrets
-MONGO_URI = st.secrets["MONGO"]["URI"]
+# MONGO_URI = st.secrets["MONGO"]["URI"]
 # Set up MongoDB connection
-client = MongoClient(MONGO_URI, tls=True, tlsAllowInvalidCertificates=True)
-db = client["Shelf_life_users"]
-users_collection = db["Users"]
+if "MONGO_URI" in st.secrets:
+    MONGO_URI = st.secrets["MONGO_URI"]
+else:
+    MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://Abhishek:abhi123@drugdatacluster0.ko5uq.mongodb.net/Shelf_life_users?retryWrites=true&w=majority")
+
+
+
+# client = MongoClient(MONGO_URI, tls=True, tlsAllowInvalidCertificates=True)
+# db = client["Shelf_life_users"]
+# users_collection = db["Users"]
+
+
+# Set up MongoDB connection
+try:
+    client = MongoClient(MONGO_URI, tls=True, tlsAllowInvalidCertificates=True)
+    db = client["Shelf_life_users"]  # Replace with your actual database name
+    users_collection = db["Users"]   # Replace with your actual collection name
+    print("Connected to MongoDB Atlas successfully.")
+except Exception as e:
+    print("Failed to connect to MongoDB:", e)
+    raise
 
 # Register function
 def register(name, username, password):
